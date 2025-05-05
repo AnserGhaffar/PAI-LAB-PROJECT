@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Summarizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            background-color: #ffffff;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #007BFF;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>News Article Summarizer</h1>
+
+    <form method="POST">
+        <label for="url">Paste an article link below:</label>
+        <input type="url" name="url" id="url" placeholder="https://example.com/news/article" required>
+        <button type="submit">Summarize Article</button>
+    </form>
+
+    {% if data %}
+        {% if data.error %}
+            <p style="color: red;">Error: {{ data.error }}</p>
+        {% else %}
+            <h2>Title</h2>
+            <div class="output">{{ data.title }}</div>
+
+            <h3>Author(s)</h3>
+            <div class="output">{{ data.authors }}</div>
+
+            <h3>Publication Date</h3>
+            <div class="output">{{ data.publish_date }}</div>
+
+            <h3>Summary</h3>
+            <div class="output">{{ data.summary }}</div>
+
+            <h3>Sentiment Analysis</h3>
+            <div class="output">{{ data.sentiment }}</div>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
